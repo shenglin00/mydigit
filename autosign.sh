@@ -22,11 +22,11 @@ LOGIN_PAGE="https://www.mydigit.cn/member.php?mod=logging&action=login&handlekey
 CURL_COMMON='curl -A "$USER_AGENT" -H "$EXT_HEADER" -s -D -'
 CUT_COOKIE='(tolower($1)=="set-cookie:"){n=split($0,arr," *; *")
               for(i=2;i<=n;i++){if(tolower(arr[i])=="max-age=0"){flag=1}}
-              if(flag){split($2,arr,"=");print arr[1]"=deleted;"}
+              if(flag){split($2,arr,"=");print arr[1]"=,;"}
               else{print $2};flag=false}'
 
 trim_cookie() {
-  COOKIE=`sed 's/ /\n/g' << EOF | awk -F '=' '!arr[$1]++' | grep -v '^[^=]*=deleted;$'
+  COOKIE=`sed 's/ /\n/g' << EOF | awk -F '=' '!arr[$1]++' | grep -v '^[^=]*=,;$'
 $COOKIE
 EOF
 `
