@@ -81,7 +81,7 @@ get_formhash
 rm -f /tmp/autosign.$$
 
 # do sign
-add_cookie "`$CURL_COMMON -b "$(echo $COOKIE)" -e "$SIGN_PAGE" -o - \
+add_cookie "`$CURL_COMMON -b "$(echo $COOKIE)" -e "$SIGN_PAGE" -o /dev/null \
            $BASE_URL/plugin.php?id=k_misign:sign\&operation=qiandao\&formhash=$FORM_HASH\&format=empty
            `"
 
